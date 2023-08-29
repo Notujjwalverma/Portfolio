@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .contents {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .navbar {
+      background-color: gainsboro;
+      margin-bottom: 25px;
+      padding: 10px 0px;
+
+    }
+
+    .contents {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      margin: 20px;
+
+
+    }
+
+    .card p {
+      font-size: 12px;
+    }
+
+    .card button {
+      font-size: 14px;
+    }
+
+    #targetimg {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 35%;
+
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: bold;
+    }
+  </style>
+  <title>Contests</title>
+</head>
+
+<body>
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Contest for coders</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link disabled" aria-disabled="true"><span class="design">Admin : Ujjwal verma</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="contents">
+
+  </div>
+  <script>
+    let url = "https://kontests.net/api/v1/all"
+    let response = fetch(url)
+    let cardcontainer = document.getElementsByClassName("contents")[0]
+
+    let hackerimg =
+      ["https://blogs.vmware.com/security/files/2020/05/haking_is_the_new_espionage.jpg",
+        "https://www.simplilearn.com/ice9/free_resources_article_thumb/white_hat_hacker.jpg",
+        "https://i0.wp.com/thecyberexpress.com/wp-content/uploads/2022/09/shutterstock_1480095632.jpg",
+        "https://media.istockphoto.com/id/962366210/photo/anonymous-hacker-with-laptop-in-front-of-binary-code-cyber-security.jpg?s=612x612&w=0&k=20&c=-BJLwYAzjTsXh5Zj_Qn-5HQ-MRYA2fr_SdXv7oqqSZk=",
+        "https://media.istockphoto.com/id/817486228/photo/dangerous-hooded-hacker-breaks-into-government-data-servers-and-infects-their-system-with-a.jpg?s=612x612&w=0&k=20&c=BPW2lh4oej-ppMJRofkZPCoOBxcZtj-_3xEgaXM-dO4=",
+        "https://www.forbesindia.com/media/images/2022/Sep/img_194409_ubersm.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUpWRgQztJCfijTmwjDHFmY2APwAxCnT0HfFvx05IXbBpaVF2e1KbqfTAAgTApoklIXhk&usqp=CAU",
+        "https://cdn.forbes.com.mx/2022/10/De-nin%CC%83o-hacker-a-emprendedor-03-WP-pag.-58-62--e1684358548120-640x360.jpg",
+        "https://images.impresa.pt/sicnot/2022-02-09-hacker-with-computers-in-dark-room.-cyber-crime/original",
+        "https://nypost.com/wp-content/uploads/sites/2/2023/02/hacker-02.jpg",
+        "https://www.udacity.com/blog/wp-content/uploads/2022/07/Hacker_Blog-scaled.jpeg",
+        "https://www.shutterstock.com/shutterstock/videos/1081257647/thumb/1.jpg?ip=x480",
+      ]
+
+    let ihtml = cardcontainer.innerHTML
+
+    response.then((value) => {
+      return value.json()
+    }).then((contests) => {
+      console.log(contests)
+
+      for (items in contests) {
+        let urlitem = contests[items]
+        cardcontainer.innerHTML += `<div class="card" style="width: 16rem; height: auto; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <img id="targetimage" style = "object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 35%; " src="${hackerimg[Math.floor(Math.random() * 12)]}" class="card-img-top"
+          alt="...">
+  
+  
+        <div class="card-body">
+          <h5 class="card-title "> <span id="targetname">${urlitem.name}</span></h5>
+          <p id="targetbio" class="card-text targetbio">
+            <p>Site : ${urlitem.site}</p>
+            <p>Status : ${urlitem.status}</p>
+            <p>Start time : ${urlitem.start_time}</p>
+            <p>End time : ${urlitem.end_time}</p>
+            <p>In 24 hours : ${urlitem.in_24_hours}</p>
+          </p>
+          <a href="${urlitem.url}" id="iglinktarget" class="btn btn-primary">Visit site</a>
+        </div>
+      </div>`
+      }
+    })
+  </script>
+
+</body>
+
+</html>
